@@ -30,9 +30,8 @@ urlpatterns = [
     path('api/user/', include('user.urls')),
     path('api/recipe/', include('recipe.urls')),
     path('api-auth/', include('rest_framework.urls')),
-    path('assets/<path:path>', static_serve, {'document_root': os.path.join(settings.BASE_DIR, 'frontend/assets')}),
     path('', frontend_view, name='frontend'),
-]
+] + static('/assets/', document_root=os.path.join(settings.BASE_DIR, 'frontend/assets'))
 
 if settings.DEBUG:
     urlpatterns += static(
