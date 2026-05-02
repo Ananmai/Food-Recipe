@@ -13,6 +13,7 @@
   "routes": [
     { "src": "/api/(.*)", "dest": "recipe_api/wsgi.py" },
     { "src": "/admin/(.*)", "dest": "recipe_api/wsgi.py" },
+    { "src": "/assets/(.*)", "dest": "frontend/assets/$1" },
     { "src": "/static/(.*)", "dest": "frontend/$1" },
     { "src": "/(.*)", "dest": "frontend/index.html" }
   ]
