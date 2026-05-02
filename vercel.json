@@ -29,6 +29,9 @@
       "dest": "recipe_api/wsgi.py"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
       "dest": "recipe_api/wsgi.py"
     }
