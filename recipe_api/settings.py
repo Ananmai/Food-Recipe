@@ -86,10 +86,16 @@ WSGI_APPLICATION = 'recipe_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# Use /tmp for SQLite on Vercel (read-only filesystem workaround)
+if os.environ.get('VERCEL'):
+    db_path = '/tmp/db.sqlite3'
+else:
+    db_path = BASE_DIR / 'db.sqlite3'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': db_path,
     }
 }
 
