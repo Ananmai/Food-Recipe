@@ -20,6 +20,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import TemplateView
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.static import serve as static_serve
+import os
 
 frontend_view = ensure_csrf_cookie(TemplateView.as_view(template_name='index.html'))
 
@@ -28,6 +30,7 @@ urlpatterns = [
     path('api/user/', include('user.urls')),
     path('api/recipe/', include('recipe.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    path('assets/<path:path>', static_serve, {'document_root': os.path.join(settings.BASE_DIR, 'frontend/assets')}),
     path('', frontend_view, name='frontend'),
 ]
 
